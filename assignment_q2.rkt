@@ -26,12 +26,12 @@
   (citr_func el (cdr lst) (+ (if (equal? el (car lst)) 1 0) val))
   ))
 ;F
-(define (count_instances_deep lst)
+(define (count_instances_deep comp lst)
   (cid_func lst 0 comp)
   )
-(define (cid_func lst val)
+(define (cid_func lst val comp)
   (cond [(empty? lst) val]
-        [(list? (car lst)) (cid_func (append (cadar lst) (cdr lst)) val)]
-        [else (cid_func (cdr lst) (+ val (if (equal? comp (car lst)) 1 0)))]
+        [(list? (car lst)) (cid_func (append (cadar lst) (cdr lst)) val comp)]
+        [else (cid_func (cdr lst) (+ val (if (equal? comp (car lst)) 1 0)) comp)]
         )
   )
